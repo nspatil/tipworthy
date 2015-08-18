@@ -70,15 +70,32 @@
     <section id="result" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>{{user}}</h2>
-                <table class="table">
-                    {% for value in result %}
+                <table class="table borderless">
                     <tr>
-                        <td><br> <a href={{ value }}>{{ value }}}</a> <br></td>
+                        <td> These articles are strongly recommended: </td>
+                        <td> This is the score for each article: </td>
+                    </tr>
+                    {% for value, score in result %}
+                    <tr>
+                        <td><a href={{ value }}>{{ value }}</a></td>
+                        <td> {{ score }} </td>
+                        <br>
                     </tr>
                     {% endfor %}
+                    <br>
+                    <tr>
+                        <td> These are moderately recommended: </td>
+                        <td> This is the score for each article: </td>
+                    </tr>
+                    {% for value, score in  maybe%}
+                    <tr>
+                        <td> <a href={{ value }}>{{ value }}</a></td>
+                        <td> {{ score }} </td>
+                        <br>
+                    </tr> 
+                    {% endfor %}
                 </table>
-                <p> These are recommendations of news articles posted by Reuters within the last 24 hours. The articles were passed through a topic modeling algorithm called Latent Dirichlet Allocation (LDA) and assigned probability scores for each topic. These scores were then compared to the user's affinity for each topic to determine whether the article matched the user's interests.</p>
+                <p> These are recommendations of news articles posted by Reuters within the last 24 hours. The articles were passed through the trained LDA model and assigned probability scores for each topic. These scores were then compared to the user's affinity for each topic to determine whether the article matched the user's interests.</p>
             </div>
         </div>
     </section>
@@ -89,7 +106,14 @@
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Try it out!</h2>
-                    <p>You can try out the app by picking one of the anonymous users below.</p>
+                   <p>You can try out the app by pasting in an article or by looking at the daily recommendations for one of the anonymous users below.</p>
+                    <form action = "{{ url_for('self_recommend') }}" method=post>
+                        <div class="form-group">
+                            <label for="comment">Paste in an article you would like to recommend here:</label>
+                            <textarea class="form-control" rows="5" id="comment" name="usersub"></textarea>
+                            <button class = 'btn btn-default btn-md'>Submit</button>
+                        </div>
+                    </form>
                     <a href="{{url_for('user_1')}}" class="btn btn-default btn-md">User 1</a>
                     <a href="{{url_for('user_2')}}" class="btn btn-default btn-md">User 2</a>
                     <a href="{{url_for('user_3')}}" class="btn btn-default btn-md">User 3</a>
@@ -110,7 +134,7 @@
                 </p>
                 <ul class="list-inline banner-social-buttons">
                     <li>
-                        <a href="https://github.com/nspatil" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        <a href="https://github.com/nspatil/tipworthy" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
                     </li>
                 </ul>
             </div>

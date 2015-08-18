@@ -19,4 +19,4 @@ if __name__ == '__main__':
 	article_dict = {}
 	for rss in rss_list:
 		article_dict = pull_article(rss, article_dict)
-	pickle.dump( article_dict, open( "news_articles.p", "wb" ) )
+	pickle.dump( article_dict, open( "news_articles2.p", "wb" ) )

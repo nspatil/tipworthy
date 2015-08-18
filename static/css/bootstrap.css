@@ -183,7 +183,17 @@ optgroup {
 table {
   border-spacing: 0;
   border-collapse: collapse;
+  border: none;
 }
+
+table td {
+    border-top: none !important;
+}
+
+.borderless td, .borderless th {
+    border: none;
+}
+
 td,
 th {
   padding: 0;
