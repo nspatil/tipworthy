@@ -7,11 +7,11 @@ import operator
 app = Flask(__name__)
 tipmodel = pickle.load(open( "tipmodel.p", "rb" ))
 articles = pickle.load(open( "news_articles2.p", "rb" ))
-user1 = 'MarioLutherKingJr'
-user2 = 'roadies'
-user3 = 'mxisaac'
-user4 = 'Thoranus'
-user5 = 'rappercake'
+user1 = ****
+user2 = ****
+user3 = ****
+user4 = ****
+user5 = ****
 
 @app.route('/', methods=['GET'])
 def home():
